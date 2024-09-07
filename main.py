@@ -12,7 +12,7 @@ app = ApplicationBuilder().token("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM
 
 
 app.add_handler(CommandHandler("hello", hello))
-app.add_handler(CommandHandler("xin chào", xinchao))
+app.add_handler(CommandHandler("xinchao", xinchao))
 
 #google sheet
 import os
