@@ -1,7 +1,9 @@
 python-telegram-bot
 Flask
 requests
+google-api-python-client
 google-auth
-google-auth-oauthlib
 google-auth-httplib2
-googleapiclien
+google-auth-oauthlib
+python-telegram-bot
+gspread
