@@ -10,5 +10,5 @@ app = ApplicationBuilder().token("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM
 
 
 app.add_handler(CommandHandler("hello", hello))
-app.add_handler(CommandHandler("news", news))
+
 app.run_polling()
