@@ -5,12 +5,14 @@ i
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(f'Xin chào {update.effective_user.full_name}. Chúc {update.effective_user.full_name} một ngày tốt lành! 😊 ')
-
+async def xinchao(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Xin chào {update.effective_user.full_name}. Chúc bạn một ngày tốt lành!')
 
 app = ApplicationBuilder().token("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM").build()
 
 
 app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("xin chào", xinchao))
 
 #google sheet
 import os
@@ -30,7 +32,7 @@ creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE
 client = gspread.authorize(creds)
 
 # Mở bảng tính Google Sheets với ID của nó
-SPREADSHEET_ID = 'your_spreadsheet_id_here'  # Thay thế bằng ID bảng tính của bạn
+SPREADSHEET_ID = '1eoR1LGzEsJfjJ6sBh0XMSFTctHntqtTVPadEOsM3I5g'  # Thay thế bằng ID bảng tính của bạn
 sheet = client.open_by_key(SPREADSHEET_ID).sheet1
 
 # Hàm ghi dữ liệu vào Google Sheets
@@ -52,7 +54,7 @@ def handle_message(update: Update, context: CallbackContext) -> None:
 # Hàm chính để khởi động bot
 def main():
     # Thay YOUR_TELEGRAM_BOT_API_TOKEN bằng token của bot của bạn
-    updater = Updater("YOUR_TELEGRAM_BOT_API_TOKEN")
+    updater = Updater("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM")
 
     # Thêm handler để xử lý tin nhắn từ người dùng
     dispatcher = updater.dispatcher
