@@ -40,7 +40,7 @@ def append_data_to_sheet(name, message):
     sheet.append_row([name, message])
 
 # Hàm xử lý khi bot nhận được tin nhắn
-async def(update: Update, context: CallbackContext) -> None:
+async def handle_message(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat.id
     user_name = update.message.from_user.full_name
     user_message = update.message.text
