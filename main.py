@@ -19,7 +19,7 @@ import os
 import gspread
 from google.oauth2.service_account import Credentials
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Đường dẫn tới file JSON chứa thông tin xác thực
 SERVICE_ACCOUNT_FILE = 'credentials.json'
@@ -41,7 +41,7 @@ def append_data_to_sheet(name, message):
 
 # Hàm xử lý khi bot nhận được tin nhắn
 async def handle_message(update: Update, context: CallbackContext) -> None:
-    chat_id = update.message.chat.id
+    chat_id = update.message.chat_id
     user_name = update.message.from_user.full_name
     user_message = update.message.text
 
@@ -49,23 +49,25 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     append_data_to_sheet(user_name, user_message)
 
     # Phản hồi lại người dùng
-    context.bot.send_message(chat_id=chat_id, text=f"Đã ghi dữ liệu: {user_message}")
+    await context.bot.send_message(chat_id=chat_id, text=f"Đã ghi dữ liệu: {user_message}")
 
 # Hàm chính để khởi động bot
-def main():
+async def main():
     # Thay YOUR_TELEGRAM_BOT_API_TOKEN bằng token của bot của bạn
-    updater = Updater("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM")
+    application = Application.builder().token("7384027524:AAHgL6Dz5rFOATYFrJLDkzt8vfvrfNj1AfM").build()
 
     # Thêm handler để xử lý tin nhắn từ người dùng
-    dispatcher = updater.dispatcher
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     # Bắt đầu bot
-    updater.start_polling()
-    updater.idle()
+    await application.start()
+    await application.updater.start_polling()
+    await application.idle()
 
 if __name__ == '__main__':
-    main()
+    import asyncio
+    asyncio.run(main())
+
 #Kết thúc google sheet#
 
 
