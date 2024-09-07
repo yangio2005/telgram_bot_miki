@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
-i
+
 
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
