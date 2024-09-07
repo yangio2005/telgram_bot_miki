@@ -19,7 +19,7 @@ import os
 import gspread
 from google.oauth2.service_account import Credentials
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Đường dẫn tới file JSON chứa thông tin xác thực
 SERVICE_ACCOUNT_FILE = 'credentials.json'
@@ -40,7 +40,7 @@ def append_data_to_sheet(name, message):
     sheet.append_row([name, message])
 
 # Hàm xử lý khi bot nhận được tin nhắn
-def handle_message(update: Update, context: CallbackContext) -> None:
+async def(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat.id
     user_name = update.message.from_user.full_name
     user_message = update.message.text
